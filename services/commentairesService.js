@@ -11,6 +11,17 @@ class commentairesService {
     async getCommentairesByID(id) {
         return await commentaires.findByPk(id);
     }
+    async addCommentaires (commentaire) {
+        // Équivalent du insert into (ca_libelle) values ("test catégories");
+        return await commentaires.create(commentaire);
+    }
+    async deleteCommentaires(id) {
+        // Équivalent du DELETE FROM commentaires WHERE id = ?;
+        return await commentaires.destroy({ where: { comment_id:id } });
+    }
+    async updateCommentaires(id, commentaire) {
+        return await commentaires.update (commentaire, { where: { comment_id:id } });
+    }
 }
 
 // Exportation pour utilisation dans d'autres fichiers

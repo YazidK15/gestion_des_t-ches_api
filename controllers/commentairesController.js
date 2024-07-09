@@ -23,6 +23,43 @@ class commentairesController {
             result.json({ error: "Une erreur est survenue lors de la récupération des commentaires par ID" });
         }
     }
+    async addCommentaires (request, result) {
+        try {
+            const commentaires = await commentairesService.addCommentaires(request.body);
+            result.json(commentaires);
+        } catch (error) {
+            result.status(500);
+            result.json({ error: "Une erreur est survenue lors de l'ajout du commentaire" });
+        }
+    }
+    async deleteCommentaires(request, result) {
+        try {
+            const commentaires = await commentairesService.deleteCommentaires(request.params.id);
+            if (commentaires > 0) {
+                result.json({ message: "Commentaire supprimé avec succès" });
+            } else {
+                result.status(404)
+                result.json({ error: "Commentaire non trouvé" });
+            }
+        } catch (error) {
+            result.status(500)
+            result.json({ error: "Une erreur est survenue lors de la suppression du commentaire" });
+        }
+    }
+    async updateCommentaires(request, result) {
+        try {
+            const commentaires = await commentairesService.updateCommentaires(request.params.id, request.body);
+            if (commentaires > 0) {
+                result.json({ message: "Commentaire modifié avec succès" });
+            } else {
+                result.status(404)
+                result.json({ error: "Commentaire non trouvé" });
+            }
+        } catch (error) {
+            result.status(500)
+            result.json({ error: "Une erreur est survenue lors de la modification du commentaire" });
+        }
+    }
 
 
 }
