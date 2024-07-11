@@ -41,4 +41,4 @@ const auth =(req,res,next) => {
 router.post('/login', login);
 router.get('/test', auth, test);
 
-module.exports = router;
+module.exports = auth;
