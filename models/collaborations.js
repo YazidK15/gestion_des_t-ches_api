@@ -39,7 +39,7 @@ collaborations.init({
     timestamps : false
 })
 
-// Permet d'afficher TOUTES les reservations d'un paiement et tous les paiements d'une réservation
+// Permet d'afficher TOUTES les taches d'un utilisateur et tous les utilisateurs d'une tache
 taches.belongsToMany(utilisateurs, {as: 'utilisateurs', foreignKey: 'task_id', through: collaborations})
 utilisateurs.belongsToMany(taches, {as: 'taches', foreignKey: 'user_id', through: collaborations})
 
